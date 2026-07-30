@@ -13,6 +13,12 @@ def main():
 	dt = 0.0
 
 	player = Player (SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
+	
+
+
+	group_update = pygame.sprite.Group()
+	group_draw = pygame.sprite.Group()
+	Player.containers = (group_update, group_draw)
 
 	while True:
 		dt = clock.tick(60)/1000
