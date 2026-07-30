@@ -11,18 +11,14 @@ def main():
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 	clock = pygame.time.Clock()
 	dt = 0.0
-
-	player = Player (SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
-	
-
-
-	group_update = pygame.sprite.Group()
-	group_draw = pygame.sprite.Group()
-	Player.containers = (group_update, group_draw)
+	updatable = pygame.sprite.Group()
+	drawable = pygame.sprite.Group()
+	Player.containers = (updatable, drawable)
+	player1 = Player (SCREEN_WIDTH /2, SCREEN_HEIGHT /2)
 
 	while True:
 		dt = clock.tick(60)/1000
-		log_state()
+		
 		
 		
 		for event in pygame.event.get():
@@ -30,8 +26,10 @@ def main():
 				return
 
 		screen.fill("black")
-		player.draw(screen)
-		player.update(dt)
+		updatable.update(dt)
+		for obj in drawable:
+			obj.draw(screen)
+		log_state()
 		pygame.display.flip()
 
 		
